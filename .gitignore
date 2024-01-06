@@ -1,0 +1,4 @@
+# Project exclude paths
+/Vitality-API/target/
+/Vitality-Proxy/target/
+/Vitality-Shared/target/

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Vitality-API/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-API/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-Bukkit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-Bukkit/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-Proxy/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-Proxy/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-Shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Vitality-Shared/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
