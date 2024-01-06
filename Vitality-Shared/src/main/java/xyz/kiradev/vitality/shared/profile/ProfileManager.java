@@ -28,8 +28,12 @@ public class ProfileManager implements IProfileManager {
     @Override
     public Profile getProfileByID(UUID uuid) {
         Document document = api.getMongoAPI().getMongoDatabase().getCollection("profiles").find(Filters.eq("_id", uuid.toString())).first();
-        if(document == null) return null;
+        if(document == null) {
+            System.out.println("Document null");
+            return null;
+        }
 
+        System.out.println(document.toJson());
         return api.getGson().fromJson(document.toJson(), Profile.class);
     }
 

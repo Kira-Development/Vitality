@@ -14,6 +14,7 @@
         <module>Vitality-API</module>
         <module>Vitality-Shared</module>
         <module>Vitality-Proxy</module>
+        <module>Vitality-Bukkit</module>
     </modules>
 
     <properties>

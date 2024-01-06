@@ -19,7 +19,7 @@ public class ChatColorTypeAdapter implements JsonSerializer<ChatColor>, JsonDese
     @Override
     public ChatColor deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         if(json.getAsString().isEmpty()) return null;
-        return ChatColor.of(json.getAsString());
+        return ChatColor.valueOf(json.getAsString());
     }
 
     @Override

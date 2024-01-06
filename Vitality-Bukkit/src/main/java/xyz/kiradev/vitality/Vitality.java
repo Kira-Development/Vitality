@@ -28,7 +28,7 @@ public final class Vitality extends Clash {
     }
 
     private void loadFiles() {
-        saveDefaultConfig();
+        setupConfig();
     }
 
     private void loadApi() {
