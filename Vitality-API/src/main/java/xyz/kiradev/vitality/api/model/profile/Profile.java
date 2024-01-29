@@ -30,7 +30,6 @@ public class Profile {
     private final UUID uuid;
 
     @Expose private String name, lastIP, currentServer;
-    @Expose private ChatColor mainColor, secondaryColor, errorColor;
     @Expose private Set<String> permissions, ips;
     @Expose private Set<UUID> alts;
     @Expose private List<Grant> grants;
@@ -46,7 +45,7 @@ public class Profile {
     }
 
     public String getDisplayName() {
-        return ChatColor.valueOf(getCurrentRank().getColor()) + "" + (getCurrentRank().isBold() ? ChatColor.BOLD : "") + (getCurrentRank().isItalic() ? ChatColor.ITALIC : "") + name;
+        return getCurrentRank().getDisplayColor() + name;
     }
 
     public Grant getHighestGrant() {
@@ -62,7 +61,7 @@ public class Profile {
 
     public Rank getCurrentRank() {
         Rank rank = VitalityAPI.getInstance().getRankManager().getDefaultRank();
-        if(grants.isEmpty()) return rank;
+        if(grants == null || grants.isEmpty()) return rank;
         return VitalityAPI.getInstance().getRankManager().getRankByUUID(getHighestGrant().getRankId());
     }
 

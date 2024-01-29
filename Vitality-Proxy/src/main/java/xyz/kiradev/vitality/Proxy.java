@@ -1,9 +1,11 @@
 package xyz.kiradev.vitality;
 
 import co.aikar.commands.BungeeCommandManager;
+import com.mongodb.Block;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
+import org.bson.Document;
 import xyz.kiradev.vitality.api.util.mongo.MongoCredentials;
 import xyz.kiradev.vitality.api.util.redis.credentials.RedisCredentials;
 import xyz.kiradev.vitality.commands.MaintenanceCommand;
@@ -32,6 +34,7 @@ public final class Proxy extends Plugin {
         this.api = new VitalityShared(getMongoCredentials(), getRedisCredentials());
         setupListeners();
         setupCommands();
+        api.getApi().getMongoAPI().getMongoDatabase().getCollection("profiles").find().forEach((Block<? super Document>) document -> System.out.println(document.toJson()));
     }
 
     private void setupConfig() {
@@ -52,7 +55,7 @@ public final class Proxy extends Plugin {
     }
 
     private RedisCredentials getRedisCredentials() {
-        return new RedisCredentials(config.getString("redis.host"), "Vitality:ALL", config.getString("redis.password"), config.getInt("redis.port"), config.getBoolean("redis.auth"));
+        return new RedisCredentials(config.getString("redis.host"), "Vitality:PROXY", config.getString("redis.password"), config.getInt("redis.port"), config.getBoolean("redis.auth"));
     }
 
     private MongoCredentials getMongoCredentials() {
@@ -65,9 +68,5 @@ public final class Proxy extends Plugin {
                         getConfig().getBoolean("mongo.auth"),
                         getConfig().getString("mongo.user"),
                         getConfig().getString("mongo.password"));
-    }
-
-    @Override
-    public void onDisable() {
     }
 }

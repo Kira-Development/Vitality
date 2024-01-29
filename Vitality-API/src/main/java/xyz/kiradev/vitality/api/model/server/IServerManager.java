@@ -16,6 +16,7 @@ public interface IServerManager {
     Server getByName(String name);
     Map<String, Server> getServers();
 
+    void start();
     void keepAlive(Server server);
     void sendUpdate(Server server);
 }

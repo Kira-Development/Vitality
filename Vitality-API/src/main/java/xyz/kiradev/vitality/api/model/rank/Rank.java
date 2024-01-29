@@ -25,16 +25,16 @@ public class Rank {
     private final UUID uuid;
 
     @Expose
-    private String name, prefix, suffix;
+    private String name, displayName, prefix, suffix;
 
     @Expose
     private ChatColor color;
 
     @Expose
-    private boolean bold, italic, isDefault, staff;
+    private boolean bold, italic, isDefault, staff, purchasable;
 
     @Expose
-    private int weight;
+    private int weight, price;
 
     @Expose
     private Set<String> permissions;
@@ -45,23 +45,21 @@ public class Rank {
     public Rank(String name) {
         this.uuid = UUID.randomUUID();
         this.name = name;
+        this.color = ChatColor.GRAY;
+        this.displayName = color + name;
         this.prefix = "";
         this.suffix = "";
-        this.color = ChatColor.GRAY;
         this.bold = false;
         this.italic = false;
         this.isDefault = false;
         this.staff = false;
         this.weight = 0;
+        this.price = 0;
         this.permissions = new HashSet<>();
         this.inheritance = new HashSet<>();
     }
 
-    public String getDisplayName() {
-        return color + "" + (bold ? ChatColor.BOLD : "") + (italic ? ChatColor.ITALIC : "") + name;
-    }
-
-    public String getColor() {
+    public String getDisplayColor() {
         return color + "" + (bold ? ChatColor.BOLD : "") + (italic ? ChatColor.ITALIC : "");
     }
 

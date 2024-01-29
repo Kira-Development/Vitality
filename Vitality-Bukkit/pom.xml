@@ -40,6 +40,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <finalName>Vitality</finalName>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
@@ -66,12 +70,12 @@
         </dependency>
         <dependency>
             <groupId>xyz.kiradev</groupId>
-            <artifactId>Vitality-Shared</artifactId>
+            <artifactId>Clash</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>xyz.kiradev</groupId>
-            <artifactId>Clash</artifactId>
+            <artifactId>Vitality-Shared</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

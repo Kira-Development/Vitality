@@ -1,14 +1,5 @@
 package xyz.kiradev.vitality.listeners;
 
-/*
- *
- * Vitality is a property of Kira-Development-Team
- * 1/6/2024
- * Coded by the founders of Kira-Development-Team
- * EmpireMTR & Vifez
- *
- */
-
 import net.md_5.bungee.api.event.ServerDisconnectEvent;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -18,8 +9,6 @@ import xyz.kiradev.vitality.api.VitalityAPI;
 import xyz.kiradev.vitality.api.model.profile.Profile;
 import xyz.kiradev.vitality.api.model.rank.Rank;
 import xyz.kiradev.vitality.util.C;
-
-import java.util.UUID;
 
 public class StaffListener implements Listener {
 
@@ -33,21 +22,22 @@ public class StaffListener implements Listener {
 
     @EventHandler
     public void onSwitch(ServerSwitchEvent event) {
-        UUID uuid = event.getPlayer().getUniqueId();
-        System.out.println(uuid.toString());
         Profile profile = api.getProfileManager().getProfileByID(event.getPlayer().getUniqueId());
-        if (profile == null) return;
-        Rank rank = profile.getCurrentRank();
+        if(profile == null) return;
+        Rank rank = profile.getCurrentRank() == null ? api.getRankManager().getDefaultRank() : profile.getCurrentRank();
+        String to = event.getPlayer().getServer().getInfo().getName();
+        profile.setCurrentServer(to);
+        api.getProfileManager().save(profile);
         if (rank.isStaff()) {
             if (event.getFrom() == null) {
                 C.staffBroadcast(plugin.getLanguageFile().getConfig().getString("staff.connect")
                         .replaceAll("<player>", profile.getDisplayName())
-                        .replaceAll("<server>", event.getPlayer().getServer().getInfo().getName()));
+                        .replaceAll("<server>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(to) || server.getId().equalsIgnoreCase(to)).findFirst().orElse(null).getName()));
             } else {
                 C.staffBroadcast(plugin.getLanguageFile().getConfig().getString("staff.switch")
                         .replaceAll("<player>", profile.getDisplayName())
-                        .replaceAll("<new>", event.getPlayer().getServer().getInfo().getName())
-                        .replaceAll("<old>", event.getFrom().getName()));
+                        .replaceAll("<new>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(to) || server.getId().equalsIgnoreCase(to)).findFirst().orElse(null).getName())
+                        .replaceAll("<old>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(event.getFrom().getName()) || server.getId().equalsIgnoreCase(event.getFrom().getName())).findFirst().orElse(null).getName()));
             }
         }
     }
@@ -56,11 +46,12 @@ public class StaffListener implements Listener {
     public void onDisconnect(ServerDisconnectEvent event) {
         Profile profile = api.getProfileManager().getProfileByID(event.getPlayer().getUniqueId());
         if (profile == null) return;
+        String to = event.getPlayer().getServer().getInfo().getName();
         Rank rank = profile.getCurrentRank();
         if (rank.isStaff()) {
             C.staffBroadcast(plugin.getLanguageFile().getConfig().getString("staff.disconnect")
                     .replaceAll("<player>", profile.getDisplayName())
-                    .replaceAll("<server>", event.getPlayer().getServer().getInfo().getName()));
+                    .replaceAll("<server>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(to) || server.getId().equalsIgnoreCase(to)).findFirst().orElse(null).getName()));
         }
         api.getProfileManager().save(profile);
     }

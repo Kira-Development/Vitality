@@ -32,11 +32,6 @@ public class PermissionsListener implements Listener {
         ProxiedPlayer player = (ProxiedPlayer) event.getSender();
         Profile profile = api.getProfileManager().getProfileByID(player.getUniqueId());
 
-        if (profile == null) {
-            System.out.println("Profile is null for player: " + player.getName());
-            return;
-        }
-        System.out.println("Checking permission: " + event.getPermission() + " for player: " + player.getName() + " Result: " + profile.hasPermission(event.getPermission()));
         event.setHasPermission(profile.hasPermission(event.getPermission()));
     }
 

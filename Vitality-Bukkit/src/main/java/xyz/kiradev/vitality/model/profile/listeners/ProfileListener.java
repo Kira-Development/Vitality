@@ -13,9 +13,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import xyz.kiradev.clash.utils.C;
+import org.bukkit.event.player.PlayerQuitEvent;
 import xyz.kiradev.vitality.Vitality;
 import xyz.kiradev.vitality.api.model.profile.Profile;
+import xyz.kiradev.vitality.model.profile.permission.PermissionManager;
 
 public class ProfileListener implements Listener {
 
@@ -23,8 +24,6 @@ public class ProfileListener implements Listener {
 
     public ProfileListener(Vitality plugin) {
         this.plugin = plugin;
-
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
@@ -42,8 +41,15 @@ public class ProfileListener implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
+    public void onServerSwitch(PlayerJoinEvent event) {
         Profile profile = plugin.getApi().getApi().getProfileManager().getProfileByID(event.getPlayer().getUniqueId());
-        C.sendMessage(event.getPlayer(), plugin.getApi().getApi().getGson().toJson(profile));
+        profile.setCurrentServer(plugin.getCurrentServer().getId());
+        PermissionManager.refreshAll(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        PermissionManager.clearProfilePermissions(event.getPlayer());
+        PermissionManager.clearRankPermissions(event.getPlayer());
     }
 }

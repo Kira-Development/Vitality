@@ -35,7 +35,7 @@ public class RedisListener extends JedisPubSub {
 
             Object jsonObject = null;
             try {
-                jsonObject = jedisAPI.getGson().fromJson(strings[0], Class.forName(strings[1]));
+                jsonObject = jedisAPI.getApi().getGson().fromJson(strings[0], Class.forName(strings[1]));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

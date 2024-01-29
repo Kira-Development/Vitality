@@ -15,14 +15,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.kiradev.vitality.api.VitalityAPI;
 import xyz.kiradev.vitality.api.model.rank.Rank;
 import xyz.kiradev.vitality.api.model.server.Server;
-import xyz.kiradev.vitality.api.model.server.enums.ServerType;
 import xyz.kiradev.vitality.api.util.mongo.MongoCredentials;
 import xyz.kiradev.vitality.api.util.redis.credentials.RedisCredentials;
-import xyz.kiradev.vitality.shared.grant.GrantManager;
-import xyz.kiradev.vitality.shared.profile.ProfileManager;
-import xyz.kiradev.vitality.shared.punishment.PunishmentManager;
-import xyz.kiradev.vitality.shared.rank.RankManager;
-import xyz.kiradev.vitality.shared.server.ServerManager;
+import xyz.kiradev.vitality.shared.model.grant.GrantManager;
+import xyz.kiradev.vitality.shared.model.profile.ProfileManager;
+import xyz.kiradev.vitality.shared.model.punishment.PunishmentManager;
+import xyz.kiradev.vitality.shared.model.rank.RankManager;
+import xyz.kiradev.vitality.shared.model.server.ServerManager;
 
 import java.util.function.Consumer;
 
@@ -32,7 +31,7 @@ public class VitalityShared {
     @Getter private static VitalityShared instance;
 
     private JavaPlugin plugin;
-    private VitalityAPI api;
+    private final VitalityAPI api;
     @Setter
     private Consumer<Server> serverUpdateConsumer;
 
@@ -40,6 +39,7 @@ public class VitalityShared {
         instance = this;
 
         this.api = new VitalityAPI(credentials, redisCredentials);
+        this.api.setServerManager(new ServerManager(api));
         loadRanks();
         loadGrants();
         loadPunishments();
@@ -50,8 +50,14 @@ public class VitalityShared {
         instance = this;
 
         this.plugin = plugin;
-        new VitalityShared(credentials, redisCredentials);
+        this.api = new VitalityAPI(credentials, redisCredentials);
+        this.api.setServerManager(new ServerManager(api));
+        loadRanks();
+        loadGrants();
+        loadPunishments();
+        loadProfiles();
     }
+
     private void loadRanks() {
         System.out.println("Loading ranks system...");
         api.setRankManager(new RankManager(api));
@@ -79,7 +85,7 @@ public class VitalityShared {
 
     private void loadProfiles() {
         System.out.println("Loading profiles system...");
-        api.setProfileManager(new ProfileManager(api));
+        api.setProfileManager(new ProfileManager(this.getApi()));
         System.out.println("Successfully loaded profiles system!");
     }
 }

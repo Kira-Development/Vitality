@@ -10,6 +10,7 @@ package xyz.kiradev.vitality.api.model.profile;
  */
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public interface IProfileManager {

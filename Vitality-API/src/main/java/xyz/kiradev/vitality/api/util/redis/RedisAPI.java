@@ -25,16 +25,16 @@ import java.util.concurrent.Executors;
 @Getter
 public class RedisAPI {
     private final RedisCredentials redisCredentials;
-    private final Gson gson;
     private final Executor executor;
     private final RedisListener redisListener;
+    private VitalityAPI api;
 
     private JedisPool jedisPool;
     private Jedis jedis;
 
     public RedisAPI(RedisCredentials redisCredentials, VitalityAPI api) {
+        this.api = api;
         this.redisCredentials = redisCredentials;
-        this.gson = api.getGson();
         this.executor = Executors.newFixedThreadPool(2);
 
         this.redisListener = new RedisListener(executor, this);
@@ -60,7 +60,7 @@ public class RedisAPI {
                 this.jedis = jedis;
                 if (redisCredentials.isAuth()) jedis.auth(redisCredentials.getPassword());
 
-                jedis.publish(redisCredentials.getChannel(), gson.toJson(redisPacket) + "///" + redisPacket.getClass().getName());
+                jedis.publish(redisCredentials.getChannel(), api.getGson().toJson(redisPacket) + "///" + redisPacket.getClass().getName());
             }
         }).start();
     }
