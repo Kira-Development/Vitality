@@ -21,8 +21,7 @@ public final class Proxy extends Plugin {
     @Getter private static Proxy instance;
 
     private VitalityShared api;
-    private ConfigUtil languageFile;
-    private ConfigUtil configFile;
+    private ConfigUtil languageFile, configFile;
     private Configuration config;
     private BungeeCommandManager bungeeCommandManager;
 

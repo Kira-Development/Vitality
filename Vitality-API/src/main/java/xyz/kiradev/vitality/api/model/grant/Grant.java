@@ -9,7 +9,6 @@ package xyz.kiradev.vitality.api.model.grant;
  *
  */
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,14 +21,14 @@ import java.util.UUID;
 @Getter @Setter
 public class Grant {
 
-    @Expose @SerializedName("_id")
+    @SerializedName("_id")
     private final UUID uuid;
 
-    @Expose private UUID user, issuer, rankId, revokedBy;
-    @Expose private String reason, revokedReason, issuedOn, revokedOn;
-    @Expose private long duration, issuedAt, revokedAt;
-    @Expose private GrantScope scope;
-    @Expose private boolean active;
+    private UUID user, issuer, rankId, revokedBy;
+    private String reason, revokedReason, issuedOn, revokedOn;
+    private long duration, issuedAt, revokedAt;
+    private GrantScope scope;
+    private boolean active;
 
     public Grant(UUID user, Rank rank, UUID issuer, String reason, String issuedOn, GrantScope scope, long duration) {
         this.uuid = UUID.randomUUID();

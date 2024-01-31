@@ -9,7 +9,6 @@ package xyz.kiradev.vitality.api.model.server;
  *
  */
 
-import com.google.gson.annotations.Expose;
 import lombok.Getter;
 import lombok.Setter;
 import xyz.kiradev.vitality.api.VitalityAPI;
@@ -19,11 +18,11 @@ import xyz.kiradev.vitality.api.model.server.enums.ServerType;
 @Getter @Setter
 public class Server {
 
-    @Expose private String id, name;
-    @Expose private ServerType type;
-    @Expose private ServerStatus status;
-    @Expose private final long startupTime;
-    @Expose private long lastKeepAlive = System.currentTimeMillis();
+    private String id, name;
+    private ServerType type;
+    private ServerStatus status;
+    private final long startupTime;
+    private long lastKeepAlive = System.currentTimeMillis();
 
     public Server(String id, String name, ServerType type) {
         this.id = id;

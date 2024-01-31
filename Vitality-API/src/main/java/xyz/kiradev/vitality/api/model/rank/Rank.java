@@ -9,7 +9,6 @@ package xyz.kiradev.vitality.api.model.rank;
  *
  */
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,25 +20,14 @@ import java.util.*;
 @Getter @Setter
 public class Rank {
 
-    @Expose @SerializedName("_id")
+    @SerializedName("_id")
     private final UUID uuid;
 
-    @Expose
     private String name, displayName, prefix, suffix;
-
-    @Expose
     private ChatColor color;
-
-    @Expose
     private boolean bold, italic, isDefault, staff, purchasable;
-
-    @Expose
     private int weight, price;
-
-    @Expose
     private Set<String> permissions;
-
-    @Expose
     private Set<UUID> inheritance;
 
     public Rank(String name) {

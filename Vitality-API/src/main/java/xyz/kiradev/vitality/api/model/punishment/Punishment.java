@@ -9,7 +9,6 @@ package xyz.kiradev.vitality.api.model.punishment;
  *
  */
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,31 +19,15 @@ import java.util.UUID;
 @Getter @Setter
 public class Punishment {
 
-    @Expose @SerializedName("_id")
+    @SerializedName("_id")
     private final UUID uuid;
-
-    @Expose
     private final UUID issuer, player;
-
-    @Expose
     private final PunishmentType type;
-
-    @Expose
     private final long duration, addedAt;
-
-    @Expose
     private final String reason, addedOn;
-
-    @Expose
     private String unbanReason, unbannedOn;
-
-    @Expose
     private UUID unbannedBy;
-
-    @Expose
     private long unbannedAt;
-
-    @Expose
     private boolean active;
 
     public Punishment(UUID uuid, UUID issuer, UUID player, String reason, PunishmentType type, long duration, String addedOn) {

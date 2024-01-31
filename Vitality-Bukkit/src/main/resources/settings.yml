@@ -27,3 +27,10 @@ server:
   #    DEV,
   #    OTHER
   type: "HUB"
+global:
+  allow-nametags: true # Do you want to allow nametags on your server?
+  default-tag: "<rank_color>" # Available placeholders: <rank_color>, <rank_prefix>
+  vanish-tag: true # Do you want to make a special prefix for players display name in vanish?
+  vanish-tag-value: "&7[V] "
+  staff-mode-tag: true # Do you want to make a special prefix for the players display name in staff mode?
+  staff-mode-tag-value: "&7[M] "

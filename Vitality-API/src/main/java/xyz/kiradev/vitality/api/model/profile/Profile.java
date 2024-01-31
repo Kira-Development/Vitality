@@ -9,11 +9,9 @@ package xyz.kiradev.vitality.api.model.profile;
  *
  */
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
-import net.md_5.bungee.api.ChatColor;
 import xyz.kiradev.vitality.api.VitalityAPI;
 import xyz.kiradev.vitality.api.model.grant.Grant;
 import xyz.kiradev.vitality.api.model.punishment.Punishment;
@@ -25,15 +23,15 @@ import java.util.*;
 @Setter
 public class Profile {
 
-    @Expose
     @SerializedName("_id")
     private final UUID uuid;
 
-    @Expose private String name, lastIP, currentServer;
-    @Expose private Set<String> permissions, ips;
-    @Expose private Set<UUID> alts;
-    @Expose private List<Grant> grants;
-    @Expose private List<Punishment> punishments;
+    private String name, lastIP, currentServer, lastItems;
+    private Set<String> permissions, ips;
+    private Set<UUID> alts;
+    private List<Grant> grants;
+    private List<Punishment> punishments;
+    private boolean vanished, staffMode, freeze, vanishOnJoin, staffModeOnJoin;
 
     public Profile(UUID uuid) {
         this.uuid = uuid;
@@ -102,6 +100,14 @@ public class Profile {
 
     public void removePunishment(Punishment punishment) {
         punishments.remove(punishment);
+    }
+
+    public void addAlt(UUID uuid) {
+        alts.add(uuid);
+    }
+
+    public void removeAlt(UUID uuid) {
+        alts.remove(uuid);
     }
 
     public List<Punishment> getActivePunishments() {

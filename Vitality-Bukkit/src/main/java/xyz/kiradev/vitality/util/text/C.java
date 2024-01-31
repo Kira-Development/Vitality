@@ -17,6 +17,7 @@ import xyz.kiradev.vitality.Vitality;
 import xyz.kiradev.vitality.api.VitalityAPI;
 import xyz.kiradev.vitality.api.model.profile.Profile;
 import xyz.kiradev.vitality.util.file.LanguageLocale;
+import xyz.kiradev.vitality.util.packet.BroadcastPacket;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -69,7 +70,6 @@ public class C {
     }
 
     public static void sendMessage(Player player, String message) {
-        Profile profile = Vitality.getInstance().getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
         ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
         ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
         ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
@@ -84,9 +84,18 @@ public class C {
         });
     }
 
-    public static void broadcastMessage(String message, String permission) {
-        Bukkit.getOnlinePlayers().stream().filter((player) -> player.hasPermission(permission.toLowerCase())).collect(Collectors.toList()).forEach((player) -> {
-            sendMessage(player, message);
-        });
+    public static void broadcastStaffMessage(String message) {
+        Bukkit.getOnlinePlayers().stream().filter(player -> {
+            Profile profile = Vitality.getInstance().getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
+            return profile.getCurrentRank().isStaff();
+        }).collect(Collectors.toList()).forEach((player) -> sendMessage(player, message));
+    }
+
+    public static void broadcastRedisMessage(String message) {
+        Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(message));
+    }
+
+    public static void broadcastRedisMessage(String message, boolean staff) {
+        Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(message, staff));
     }
 }

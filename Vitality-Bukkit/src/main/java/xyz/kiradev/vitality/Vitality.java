@@ -9,7 +9,9 @@ import xyz.kiradev.vitality.api.model.server.Server;
 import xyz.kiradev.vitality.api.model.server.enums.ServerType;
 import xyz.kiradev.vitality.api.util.mongo.MongoCredentials;
 import xyz.kiradev.vitality.api.util.redis.credentials.RedisCredentials;
+import xyz.kiradev.vitality.model.profile.adapter.NameTagAdapter;
 import xyz.kiradev.vitality.model.profile.listeners.ProfileListener;
+import xyz.kiradev.vitality.model.profile.staff.StaffHandler;
 import xyz.kiradev.vitality.model.rank.commands.RankCommands;
 import xyz.kiradev.vitality.model.rank.menus.edit.main.listener.RankEditMenuListener;
 import xyz.kiradev.vitality.shared.VitalityShared;
@@ -34,6 +36,7 @@ public final class Vitality extends Clash {
     private ConfigFile languageFile, config;
     private VitalityShared api;
     private Server currentServer;
+    private StaffHandler staffHandler;
 
     @Override
     public void onEnable() {
@@ -71,6 +74,10 @@ public final class Vitality extends Clash {
         setupCommands("Vitality");
         registerListeners(new ProfileListener(this), new RankEditMenuListener(this));
         getCommandAPI().registerCommand(new RankCommands(this));
+
+        new NameTagAdapter(this);
+
+        this.staffHandler = new StaffHandler(this);
     }
 
     private RedisCredentials getRedisCredentials() {

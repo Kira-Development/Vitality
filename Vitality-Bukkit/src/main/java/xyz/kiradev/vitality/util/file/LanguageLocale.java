@@ -25,26 +25,20 @@ import java.util.List;
 
 @Getter
 public enum LanguageLocale {
-    // Themes
     MAIN_COLOR("themes.main-color", "YELLOW"),
     SECONDARY_COLOR("themes.secondary-color", "WHITE"),
     ERROR_COLOR("themes.error-color", "RED"),
     INVALID_COLOR("themes.invalid-color-error", "<ec>Invalid color!"),
 
-    // Command Help
     COMMAND_HELP("commands.help-message", "<mc>&l<command name> Help"),
     COMMAND_ENTRY("commands.help-entry", "&7 * <mc>/<command> <sc><args>"),
 
-    // Profile messages
     PROFILE_HELP("profile-success.help-message", "&7* <mc><command> <sc><args>"),
     PROFILE_ADDED_PERMISSION("profile-success.added-permission", "<mc>You have successfully added a <mc>permission <mc>to <sc><player>"),
     PROFILE_REMOVED_PERMISSION("profile-success.removed-permission", "<mc>You have successfully removed a <sc>permission <mc>from <sc><player>"),
     PROFILE_LIST_PERMISSION("profile-success.list-permissions", "<mc>Permissions: <sc><V>"),
-
-    // Profile errors
     PROFILE_NOT_FOUND("profile-errors.not-found", "<ec>This profile was not found."),
 
-    // Rank errors
     RANK_ALREADY_EXISTS("rank-errors.already-exists", "<ec>This rank already exists!"),
     RANK_DOESNT_EXISTS("rank-errors.rank-doesnt-exists", "<ec>This rank is invalid!"),
     RANK_COLOR_DOESNT_EXISTS("rank-errors.rank-color-doesnt-exists", "<ec>You cannot set a rank color with an invalid color."),
@@ -53,7 +47,6 @@ public enum LanguageLocale {
     RANK_ALREADY_HAS_INHERITANCE("rank-errors.rank-already-has-inheritance", "<ec>This rank already contains this rank as an inheritance."),
     RANK_DOESNT_HAVE_INHERITANCE("rank-errors.rank-doesnt-have-inheritance", "<ec>This rank does not contain this rank as an inheritance."),
 
-    // Rank messages
     CREATED_RANK("rank-success.created-rank", "<mc>You have successfully created a new rank <sc><name>"),
     DELETED_RANK("rank-success.deleted-rank", "<mc>You have successfully deleted <sc><name> rank"),
     SET_PREFIX("rank-success.set-prefix", "<mc>You have successfully set <sc><rank>'s <sc>prefix <mc>to <sc><prefix>"),
@@ -69,20 +62,30 @@ public enum LanguageLocale {
     LIST_RANK_INHERITANCE("rank-success.list-rank-inheritances", "<rank> <mc>Inheritances \n<sc><value>"),
     RANK_INFO("rank-success.info", "<rank> <mc>Info \n<sc><value>"),
 
-    // Grant errors
     CANCELLED_GRANT("grant-errors.cancelled-grant", "<ec>Cancelled grant."),
     INVALID_DURATION("grant-errors.invalid-duration", "<ec>Invalid Duration! &7(Example: permanent, 1y, 1mo, 1w, 1d, 1h, 1m, 1s)"),
 
-    // Grant messages
     PICK_DURATION("grant-success.pick-duration", "<mc>Pick the duration. &7(Example: permanent, 1y, 1mo, 1w, 1d, 1h, 1m, 1s)"),
     PICK_REASON("grant-success.pick-reason", "<mc>Provide the reason you want."),
     PICKED_DURATION("grant-success.picked-duration", "<mc>You have successfully picked the duration <sc><duration><mc>."),
     PICKED_REASON("grant-success.picked-reason", "<mc>You have successfully picked the reason <sc><reason><mc>."),
 
-    // Other
+    STAFF_VANISH_ON("staff.vanish-on", "<mc>You have &aenabled <mc>Vanish."),
+    STAFF_VANISH_OFF("staff.vanish--off", "<mc>You have &cdisabled <mc>Vanish."),
+    STAFF_VANISH_OTHER_ON("staff.staff-mode.on-other", "<mc>You have &aenabled <mc>Vanish for <target>."),
+    STAFF_VANISH_OTHER_OFF("staff.staff-mode.off-other", "<mc>You have &cdisabled <mc>Vanish for <target>."),
+    STAFF_MODMODE_ON("staff.staff-mode-on", "<mc>You have &aenabled <mc>StaffMode."),
+    STAFF_MODMODE_OFF("staff.staff-mode-off", "<mc>You have &cdisabled <mc>StaffMode."),
+    STAFF_MODMODE_OTHER_ON("staff.staff-mode.on-other", "<mc>You have &aenabled <mc>StaffMode for <target>."),
+    STAFF_MODMODE_OTHER_OFF("staff.staff-mode.off-other", "<mc>You have &cdisabled <mc>StaffMode for <target>."),
+    STAFF_NO_STAFFMODE_ON_HUB("staff.staff-mode.on-hub", "<ec>You can''t enable staffmode on a hub."),
+    STAFF_TOGGLE_AUTO_VANISH_ON("staff.vanish.on-join-enabled", ""),
+
     RANKS_LIST_FORMAT("other.rank-list-format", "<value>"),
     PLAYERS_LIST_FORMAT("other.player-list-format", "&7(<online>/<max>): <value>"),
-            ;
+    PLAYER_BAN_EVADING("staff.player-ban-evading", "&b[S] <player> &bmight be &cban &bevading! &7(Banned Alts: &c<alts>&7)"),
+    PLAYER_BLACKLIST_EVADING("staff.player-blacklist-evading", "&b[S] <player> &bmight be &4blacklist &bevading &7(Blacklisted Alts: &c<alts>&7)")
+    ;
 
     private static YamlConfiguration yamlConfiguration;
     private String path;
@@ -120,17 +123,6 @@ public enum LanguageLocale {
                 .replace("<sc>", "" + ChatColor.valueOf(Vitality.getInstance().getLanguageFile().getString("themes.secondary-color")))
                 .replace("<tc>", "" + ChatColor.valueOf(Vitality.getInstance().getLanguageFile().getString("themes.third-color")))
                 .replace("<ec>", "" + ChatColor.valueOf(Vitality.getInstance().getLanguageFile().getString("themes.error-color"))));
-    }
-
-    public void sendMessage(Player player) {
-        String message = (String) content;
-        Profile profile = Vitality.getInstance().getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
-        ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
-        ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
-        ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
-        C.sendMessage(player, message.replace("<mc>", "" + mainColor)
-                .replace("<sc>", "" + secondColor)
-                .replace("<ec>", "" + errorColor));
     }
 
     @SneakyThrows
