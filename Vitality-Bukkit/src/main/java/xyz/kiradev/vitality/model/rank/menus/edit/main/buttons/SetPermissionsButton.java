@@ -26,7 +26,7 @@ public class SetPermissionsButton extends Button {
 
     @Override
     public ItemStack getItem(Player player) {
-        return new ItemBuilder(XMaterial.NAME_TAG.parseMaterial()).name("&eModify Permissions").lore("&7Click &bhere &7to modify the &bpermissions").build();
+    return new ItemBuilder(XMaterial.WRITABLE_BOOK.parseMaterial()).name("&eModify Permissions").lore("&7Click &bhere &7to modify the &bpermissions").build();
     }
 
     @Override

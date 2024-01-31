@@ -34,7 +34,6 @@ public final class Proxy extends Plugin {
         this.api = new VitalityShared(getMongoCredentials(), getRedisCredentials());
         setupListeners();
         setupCommands();
-        api.getApi().getMongoAPI().getMongoDatabase().getCollection("profiles").find().forEach((Block<? super Document>) document -> System.out.println(document.toJson()));
     }
 
     private void setupConfig() {

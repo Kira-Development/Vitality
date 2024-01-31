@@ -54,11 +54,11 @@ public class NetworkListener implements Listener {
         );
         if (whitelistRank == null) return;
         if (profile == null) {
-            event.getPlayer().disconnect(C.convertListToString(plugin.getLanguageFile().getConfig().getStringList("maintenance.kick-message")));
+            event.getPlayer().disconnect(C.color(C.convertListToString(plugin.getLanguageFile().getConfig().getStringList("maintenance.kick-message"))));
             return;
         }
         if (!profile.hasHigherRank(whitelistRank)) {
-            event.getPlayer().disconnect(C.convertListToString(plugin.getLanguageFile().getConfig().getStringList("maintenance.kick-message")));
+            event.getPlayer().disconnect(C.color(C.convertListToString(plugin.getLanguageFile().getConfig().getStringList("maintenance.kick-message"))));
         }
     }
 }

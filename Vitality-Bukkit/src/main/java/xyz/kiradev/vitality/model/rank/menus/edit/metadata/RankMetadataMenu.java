@@ -10,17 +10,10 @@ package xyz.kiradev.vitality.model.rank.menus.edit.metadata;
  */
 
 import lombok.RequiredArgsConstructor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import xyz.kiradev.clash.menu.Menu;
 import xyz.kiradev.clash.menu.button.Button;
-import xyz.kiradev.vitality.Vitality;
-import xyz.kiradev.vitality.model.rank.menus.edit.main.RankEditMenu;
-import xyz.kiradev.vitality.model.rank.menus.edit.main.buttons.SetPrefixButton;
-import xyz.kiradev.vitality.model.rank.menus.edit.main.buttons.SetSuffixButton;
-import xyz.kiradev.vitality.model.rank.menus.edit.metadata.buttons.SetPriceButton;
-import xyz.kiradev.vitality.model.rank.menus.edit.metadata.buttons.SetPurchasableButton;
-import xyz.kiradev.vitality.model.rank.menus.edit.metadata.buttons.SetStaffButton;
+import xyz.kiradev.vitality.model.rank.menus.edit.metadata.buttons.*;
 import xyz.kiradev.vitality.model.rank.procedures.EditProcedure;
 
 import java.util.HashMap;
@@ -37,11 +30,6 @@ public class RankMetadataMenu extends Menu {
     }
 
     @Override
-    public void onClose(Player player) {
-        Bukkit.getScheduler().runTaskLater(Vitality.getInstance(), () -> new RankEditMenu(procedure).openMenu(player), 5L);
-    }
-
-    @Override
     public int getSize() {
         return 9;
     }
@@ -50,8 +38,8 @@ public class RankMetadataMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = new HashMap<>();
 
-        buttons.put(1, new SetPrefixButton(procedure));
-        buttons.put(2, new SetSuffixButton(procedure));
+        buttons.put(1, new SetBoldButton(procedure));
+        buttons.put(2, new SetItalicButton(procedure));
 
         buttons.put(4, new SetStaffButton(procedure));
 

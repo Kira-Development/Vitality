@@ -27,7 +27,7 @@ public class SetMetadatasButton extends Button {
 
     @Override
     public ItemStack getItem(Player player) {
-        return new ItemBuilder(XMaterial.NAME_TAG.parseMaterial()).name("&eModify Meta-data").lore("&7Click &bhere &7to modify the &bmeta-data").build();
+        return new ItemBuilder(XMaterial.BLAZE_POWDER.parseMaterial()).name("&eModify Meta-data").lore("&7Click &bhere &7to modify the &bmeta-data").build();
     }
 
     @Override

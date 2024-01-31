@@ -1,6 +1,8 @@
 package xyz.kiradev.vitality;
 
 import lombok.Getter;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import xyz.kiradev.clash.Clash;
 import xyz.kiradev.clash.utils.ConfigFile;
 import xyz.kiradev.vitality.api.model.server.Server;
@@ -15,12 +17,21 @@ import xyz.kiradev.vitality.shared.model.server.ServerManager;
 import xyz.kiradev.vitality.util.file.LanguageLocale;
 import xyz.kiradev.vitality.model.server.tasks.ServerTask;
 
+import java.io.File;
+
 @Getter
 public final class Vitality extends Clash {
 
+    public Vitality(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
+        super(loader, description, dataFolder, file);
+    }
+
+    public Vitality() {
+    }
+
     @Getter private static Vitality instance;
 
-    private ConfigFile languageFile;
+    private ConfigFile languageFile, config;
     private VitalityShared api;
     private Server currentServer;
 
@@ -34,7 +45,7 @@ public final class Vitality extends Clash {
     }
 
     private void setupFiles() {
-        setupConfig();
+        config = new ConfigFile(this, "settings.yml");
         languageFile = new ConfigFile(this, "language.yml");
         LanguageLocale.init();
     }

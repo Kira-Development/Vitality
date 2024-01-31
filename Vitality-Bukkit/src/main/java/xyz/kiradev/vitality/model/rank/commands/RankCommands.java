@@ -22,6 +22,9 @@ import xyz.kiradev.vitality.model.rank.procedures.EditProcedure;
 import xyz.kiradev.vitality.util.file.LanguageLocale;
 import xyz.kiradev.vitality.util.text.C;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 public class RankCommands {
 
@@ -87,13 +90,15 @@ public class RankCommands {
     @SubCommand(label = "list", parent = "rank", permission = "core.command.rank")
     public void list(CommandSender sender) {
         StringBuilder builder = new StringBuilder();
-        int i = 0;
-        for (Rank rank : plugin.getApi().getApi().getRankManager().getRanks()) {
+        List<Rank> ranksSorted = new ArrayList<>(plugin.getApi().getApi().getRankManager().getRanks());
+        ranksSorted.sort(Comparator.comparingInt(Rank::getWeight).reversed());
+        for (int i = 0; i < ranksSorted.size(); i++) {
+            Rank rank = ranksSorted.get(i);
             builder.append(rank.getDisplayName());
-            if(i < plugin.getApi().getApi().getRankManager().getRanks().size()) {
-                builder.append("&7, ");
-            } else {
+            if(i >= plugin.getApi().getApi().getRankManager().getRanks().size()) {
                 builder.append("&7.");
+            } else {
+                builder.append("&7, ");
             }
         }
 

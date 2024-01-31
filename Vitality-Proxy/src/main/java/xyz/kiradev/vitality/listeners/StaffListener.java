@@ -32,12 +32,12 @@ public class StaffListener implements Listener {
             if (event.getFrom() == null) {
                 C.staffBroadcast(plugin.getLanguageFile().getConfig().getString("staff.connect")
                         .replaceAll("<player>", profile.getDisplayName())
-                        .replaceAll("<server>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(to) || server.getId().equalsIgnoreCase(to)).findFirst().orElse(null).getName()));
+                        .replaceAll("<server>", to));
             } else {
                 C.staffBroadcast(plugin.getLanguageFile().getConfig().getString("staff.switch")
                         .replaceAll("<player>", profile.getDisplayName())
-                        .replaceAll("<new>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(to) || server.getId().equalsIgnoreCase(to)).findFirst().orElse(null).getName())
-                        .replaceAll("<old>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(event.getFrom().getName()) || server.getId().equalsIgnoreCase(event.getFrom().getName())).findFirst().orElse(null).getName()));
+                        .replaceAll("<new>", to)
+                        .replaceAll("<old>", event.getFrom().getName()));
             }
         }
     }
@@ -51,7 +51,7 @@ public class StaffListener implements Listener {
         if (rank.isStaff()) {
             C.staffBroadcast(plugin.getLanguageFile().getConfig().getString("staff.disconnect")
                     .replaceAll("<player>", profile.getDisplayName())
-                    .replaceAll("<server>", api.getServerManager().getServers().values().stream().filter(server -> server.getName().equalsIgnoreCase(to) || server.getId().equalsIgnoreCase(to)).findFirst().orElse(null).getName()));
+                    .replaceAll("<server>", to));
         }
         api.getProfileManager().save(profile);
     }
