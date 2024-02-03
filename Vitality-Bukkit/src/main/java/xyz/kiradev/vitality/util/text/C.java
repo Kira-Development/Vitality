@@ -91,6 +91,14 @@ public class C {
         }).collect(Collectors.toList()).forEach((player) -> sendMessage(player, message));
     }
 
+    public static void broadcastLocalStaffLog(String message) {
+        Bukkit.getOnlinePlayers().stream().filter(player -> {
+            Profile profile = Vitality.getInstance().getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
+            return profile.getCurrentRank().isStaff();
+        }).collect(Collectors.toList()).forEach((player) -> sendMessage(player, message));
+    }
+
+
     public static void broadcastRedisMessage(String message) {
         Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(message));
     }

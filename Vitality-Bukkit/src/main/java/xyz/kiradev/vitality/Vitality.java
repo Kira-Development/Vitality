@@ -1,9 +1,13 @@
 package xyz.kiradev.vitality;
 
+import dev.demeng.sentinel.wrapper.SentinelClient;
+import dev.demeng.sentinel.wrapper.exception.ApiException;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import xyz.kiradev.clash.Clash;
+import xyz.kiradev.clash.utils.C;
 import xyz.kiradev.clash.utils.ConfigFile;
 import xyz.kiradev.vitality.api.model.server.Server;
 import xyz.kiradev.vitality.api.model.server.enums.ServerType;
@@ -33,7 +37,7 @@ public final class Vitality extends Clash {
 
     @Getter private static Vitality instance;
 
-    private ConfigFile languageFile, config;
+    private ConfigFile languageFile, config, licenseFile;
     private VitalityShared api;
     private Server currentServer;
     private StaffHandler staffHandler;
@@ -41,6 +45,13 @@ public final class Vitality extends Clash {
     @Override
     public void onEnable() {
         instance = this;
+        setupLicenseFile();
+        if(!authenticate()) {
+            C.logger("&cLicense invalid, Disabling Plugin.");
+            C.logger("&7&oTo get a license join: &bhttps://discord.gg/kiradev&7&o.");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
         setupFiles();
         loadApi();
         setupServers();
@@ -51,6 +62,34 @@ public final class Vitality extends Clash {
         config = new ConfigFile(this, "settings.yml");
         languageFile = new ConfigFile(this, "language.yml");
         LanguageLocale.init();
+    }
+
+    private boolean authenticate() {
+
+        SentinelClient client = new SentinelClient(
+                "YOUR_URL",
+                "YOUR_API_KEY",
+                "YOUR_ENCRYPTION_SECRET_KEY");
+
+        boolean authenticated = false;
+
+        try {
+            client.getLicenseController().auth(
+                    licenseFile.getString("AUTH.License"), "Vitality", null, null, SentinelClient.getCurrentHwid(), SentinelClient.getCurrentIp());
+            authenticated = true;
+        } catch (ApiException e) {
+            System.out.println("Failed to verify license: " + e.getResponse().getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
+
+        if (authenticated) {
+            System.out.println("Successfully authenticated.");
+        }
+        return authenticated;
+    }
+    private void setupLicenseFile() {
+        licenseFile = new ConfigFile(this, "license.yml");
     }
 
     private void loadApi() {

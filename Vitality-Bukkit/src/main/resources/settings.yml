@@ -27,10 +27,12 @@ server:
   #    DEV,
   #    OTHER
   type: "HUB"
+ # logs:
+ #  redis-based: false # Enables <server> placeholder and global vanish, gamemode etc logs
 global:
   allow-nametags: true # Do you want to allow nametags on your server?
-  default-tag: "<rank_color>" # Available placeholders: <rank_color>, <rank_prefix>
+  default-tag: "<rank_color><player>" # Available placeholders: <rank_color>, <rank_prefix>
   vanish-tag: true # Do you want to make a special prefix for players display name in vanish?
-  vanish-tag-value: "&7[V] "
+  vanish-tag-value: "&7[V] <player>"
   staff-mode-tag: true # Do you want to make a special prefix for the players display name in staff mode?
-  staff-mode-tag-value: "&7[M] "
+  staff-mode-tag-value: "&7[&eM&7] <player> "

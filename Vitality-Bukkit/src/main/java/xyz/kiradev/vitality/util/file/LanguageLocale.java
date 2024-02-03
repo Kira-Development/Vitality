@@ -17,7 +17,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import xyz.kiradev.vitality.Vitality;
-import xyz.kiradev.vitality.api.model.profile.Profile;
 import xyz.kiradev.vitality.util.text.C;
 
 import java.util.ArrayList;
@@ -37,7 +36,8 @@ public enum LanguageLocale {
     PROFILE_ADDED_PERMISSION("profile-success.added-permission", "<mc>You have successfully added a <mc>permission <mc>to <sc><player>"),
     PROFILE_REMOVED_PERMISSION("profile-success.removed-permission", "<mc>You have successfully removed a <sc>permission <mc>from <sc><player>"),
     PROFILE_LIST_PERMISSION("profile-success.list-permissions", "<mc>Permissions: <sc><V>"),
-    PROFILE_NOT_FOUND("profile-errors.not-found", "<ec>This profile was not found."),
+    PROFILE_NOT_FOUND("errors.profile-errors.not-found", "<ec>This profile was not found."),
+    GAMEMODE_NOT_FOUND("errors.gamemode-errors.not-found", "<ec>That gamemode was not found."),
 
     RANK_ALREADY_EXISTS("rank-errors.already-exists", "<ec>This rank already exists!"),
     RANK_DOESNT_EXISTS("rank-errors.rank-doesnt-exists", "<ec>This rank is invalid!"),
@@ -79,7 +79,23 @@ public enum LanguageLocale {
     STAFF_MODMODE_OTHER_ON("staff.staff-mode.on-other", "<mc>You have &aenabled <mc>StaffMode for <target>."),
     STAFF_MODMODE_OTHER_OFF("staff.staff-mode.off-other", "<mc>You have &cdisabled <mc>StaffMode for <target>."),
     STAFF_NO_STAFFMODE_ON_HUB("staff.staff-mode.on-hub", "<ec>You can''t enable staffmode on a hub."),
-    STAFF_TOGGLE_AUTO_VANISH_ON("staff.vanish.on-join-enabled", ""),
+    STAFF_TOGGLE_AUTO_VANISH_ON("staff.vanish.on-join-toggle-on", "<mc>You have &aenabled <mc>auto vanish on join."),
+    STAFF_TOGGLE_AUTO_VANISH_OFF("staff.vanish.on-join-toggle-off", "<mc>You have &cdisabled <mc>auto vanish on join."),
+    STAFF_AUTO_VANISH_JOIN_MESSAGE("staff.vanish.on.join-enabled", "<mc>&lYou have been automatically put into vanish."),
+    STAFF_TOGGLE_AUTO_MODMODE_ON("staff.staff-mode.on-join-toggle-on", "<mc>You have &aenabled <mc>auto modmode on join."),
+    STAFF_TOGGLE_AUTO_MODMODE_OFF("staff.staff-mode.on-join-toggle-off", "<mc>You have &cdisabled <mc>auto modmode on join."),
+    STAFF_AUTO_MODMODE_JOIN_MESSAGE("staff.staff-mode.on.join-enabled", "<mc>&lYou have been automatically put into vanish."),
+    // Staff Logs:
+    GAMEMODE_CHANGE_LOG("basic.logs.gamemode.gamemode-change", "&7&o[<player>: <mc><gamemode> mode&7&o]"),
+    STAFFMODE_ON_LOG("staff.logs.gamemode.spectator", "&7&o[<player>: <mc>staffmoded&7&o]"),
+    STAFFMODE_OFF_LOG("staff.logs.gamemode.spectator", "&7&o[<player>: <mc>unstaffmoded&7&o]"),
+    VAISH_ON_LOG("staff.logs.gamemode.spectator", "&7&o[<player>: <mc>vanished&7&o]"),
+    VANISH_OFF_LOG("staff.logs.gamemode.spectator", "&7&o[<player>: <mc>unvanished&7&o]"),
+
+    // Essentials Module:
+    GAMEMODE_CHANGE("basic.commands.gamemode.gamemode-change", "<mc>You have set your gamemode to <sc><gamemode><mc>."),
+    SUDO("basic.commands.sudo.sudo-successful", "<mc>You have made <target> <mc>say <sc><message><mc>."),
+    MASSAY("basic.commands.sudo.sudo-successful", "<mc>You have made <sc>everone <mc>say <sc><message><mc>."),
 
     RANKS_LIST_FORMAT("other.rank-list-format", "<value>"),
     PLAYERS_LIST_FORMAT("other.player-list-format", "&7(<online>/<max>): <value>"),
