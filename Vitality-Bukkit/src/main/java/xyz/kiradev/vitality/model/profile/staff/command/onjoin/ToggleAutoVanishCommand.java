@@ -28,7 +28,5 @@ public class ToggleAutoVanishCommand {
         if (profile.isVanishOnJoin())
             profile.setVanishOnJoin(!profile.isVanishOnJoin());
 
-        }
     }
-
 }
