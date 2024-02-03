@@ -25,8 +25,6 @@ public class ToggleAutoVanishCommand {
     @Command(label = "toggleautovanish", permission = "core.command.toggleautovanish", aliases = {"tav", "toggleautov"})
     public void toggleAutoVanish(Player player) {
         Profile profile = instance.getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
-        if (profile.isVanishOnJoin())
-            profile.setVanishOnJoin(!profile.isVanishOnJoin());
-
+        profile.setVanishOnJoin(!profile.isVanishOnJoin());
     }
 }
