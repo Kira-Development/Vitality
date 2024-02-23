@@ -1,0 +1,29 @@
+mongo:
+  uri: ""
+  is-uri: false
+  host: localhost
+  port: 27017
+  database: "Vitality"
+  auth: false
+  user: "admin"
+  password: "12345"
+redis:
+  host: localhost
+  port: 6379
+  auth: false
+  password: "admin"
+server:
+  id: "Hub-01" # Should be exactly like its in your bungeecord config
+  name: "Hub"
+  # Available Types:
+  #    HUB,
+  #    HCF,
+  #    KITMAP,
+  #    UHC,
+  #    KITPVP,
+  #    SURVIVALGAMES,
+  #    BEDWARS,
+  #    SKYWARS,
+  #    DEV,
+  #    OTHER
+  type: "HUB"

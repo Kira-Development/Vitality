@@ -1,0 +1,4 @@
+name: Vitality
+version: '${project.version}'
+main: xyz.kiradev.vitality.Vitality
+author: Kira Development Team
