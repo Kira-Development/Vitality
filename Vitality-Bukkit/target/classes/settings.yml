@@ -1,0 +1,38 @@
+mongo:
+  uri: ""
+  is-uri: false
+  host: localhost
+  port: 27017
+  database: "Vitality"
+  auth: false
+  user: "admin"
+  password: "12345"
+redis:
+  host: localhost
+  port: 6379
+  auth: false
+  password: "admin"
+server:
+  id: "Hub-01" # Should be exactly like its in your bungeecord config
+  name: "Hub"
+  # Available Types:
+  #    HUB,
+  #    HCF,
+  #    KITMAP,
+  #    UHC,
+  #    KITPVP,
+  #    SURVIVALGAMES,
+  #    BEDWARS,
+  #    SKYWARS,
+  #    DEV,
+  #    OTHER
+  type: "HUB"
+ # logs:
+ #  redis-based: false # Enables <server> placeholder and global vanish, gamemode etc logs
+global:
+  allow-nametags: true # Do you want to allow nametags on your server?
+  default-tag: "<rank_color><player>" # Available placeholders: <rank_color>, <rank_prefix>
+  vanish-tag: true # Do you want to make a special prefix for players display name in vanish?
+  vanish-tag-value: "&7[V] <player>"
+  staff-mode-tag: true # Do you want to make a special prefix for the players display name in staff mode?
+  staff-mode-tag-value: "&7[&eM&7] <player> "
