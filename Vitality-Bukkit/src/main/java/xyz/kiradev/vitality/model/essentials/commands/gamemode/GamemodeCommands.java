@@ -1,19 +1,19 @@
 package xyz.kiradev.vitality.model.essentials.commands.gamemode;
 
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import org.bukkit.GameMode;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.kiradev.clash.command.annotation.Command;
 import xyz.kiradev.clash.command.annotation.Optional;
-import xyz.kiradev.clash.command.annotation.Parameter;
 import xyz.kiradev.vitality.util.file.LanguageLocale;
 import xyz.kiradev.vitality.util.text.C;
 
 /*
- * Copyright Spear Development© 2024
- * @project Vitality-Recoding
- * @date 2/3/2024
+ *
+ * Vitality is a property of Kira-Development-Team
+ * 17/11/2023
+ * Coded by the founders of Kira-Development-Team
+ * EmpireMTR & Vifez
+ *
  */
 public class GamemodeCommands {
 

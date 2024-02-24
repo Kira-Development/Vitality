@@ -27,9 +27,9 @@ public enum LanguageLocale {
     MAIN_COLOR("themes.main-color", "YELLOW"),
     SECONDARY_COLOR("themes.secondary-color", "WHITE"),
     ERROR_COLOR("themes.error-color", "RED"),
-    INVALID_COLOR("themes.invalid-color-error", "<ec>Invalid color!"),
+    INVALID_COLOR("themes.invalid-color-error", "&cInvalid color."),
 
-    COMMAND_HELP("commands.help-message", "<mc>&l<command name> Help"),
+    COMMAND_HELP("commands.help-message", "<mc>&l<commandName> Help"),
     COMMAND_ENTRY("commands.help-entry", "&7 * <mc>/<command> <sc><args>"),
 
     PROFILE_HELP("profile-success.help-message", "&7* <mc><command> <sc><args>"),
@@ -95,8 +95,10 @@ public enum LanguageLocale {
     // Essentials Module:
     GAMEMODE_CHANGE("basic.commands.gamemode.gamemode-change", "<mc>You have set your gamemode to <sc><gamemode><mc>."),
     SUDO("basic.commands.sudo.sudo-successful", "<mc>You have made <target> <mc>say <sc><message><mc>."),
-    MASSAY("basic.commands.sudo.sudo-successful", "<mc>You have made <sc>everone <mc>say <sc><message><mc>."),
-
+    MASSAY("basic.commands.sudo.sudo-successful", "<mc>You have made <sc>everyone <mc>say <sc><message><mc>."),
+    MESSAGE_TO("basic.commands.message.format.to", "<mc>(To <toPlayer>) <message>"),
+    MESSAGE_FROM("basic.commands.message.format.from", "<mc>(from <fromPlayer>) <message>"),
+    // Punishment messages:
     RANKS_LIST_FORMAT("other.rank-list-format", "<value>"),
     PLAYERS_LIST_FORMAT("other.player-list-format", "&7(<online>/<max>): <value>"),
     PLAYER_BAN_EVADING("staff.player-ban-evading", "&b[S] <player> &bmight be &cban &bevading! &7(Banned Alts: &c<alts>&7)"),

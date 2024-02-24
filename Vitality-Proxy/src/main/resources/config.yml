@@ -16,6 +16,12 @@ maintenance:
   enabled: false
   rank: "Default"
   players: []
+hub-balancing:
+  enabled: false
+  hubs:
+    - "hub-01"
+    - "hub-02"
+    - "hub-03"
 motd:
   enabled: false # Do you want Vitality to manage your network MOTD?
   maintenance-enabled: false # Do you want a special MOTD while the network is under maintenance?

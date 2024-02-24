@@ -1,9 +1,6 @@
 package xyz.kiradev.vitality;
 
-import dev.demeng.sentinel.wrapper.SentinelClient;
-import dev.demeng.sentinel.wrapper.exception.ApiException;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import xyz.kiradev.clash.Clash;
@@ -13,18 +10,22 @@ import xyz.kiradev.vitality.api.model.server.Server;
 import xyz.kiradev.vitality.api.model.server.enums.ServerType;
 import xyz.kiradev.vitality.api.util.mongo.MongoCredentials;
 import xyz.kiradev.vitality.api.util.redis.credentials.RedisCredentials;
+import xyz.kiradev.vitality.model.essentials.commands.message.MessageCommand;
+import xyz.kiradev.vitality.model.essentials.commands.message.ReplyCommand;
+import xyz.kiradev.vitality.model.essentials.handler.MessageHandler;
 import xyz.kiradev.vitality.model.profile.adapter.NameTagAdapter;
 import xyz.kiradev.vitality.model.profile.listeners.ProfileListener;
 import xyz.kiradev.vitality.model.profile.staff.StaffHandler;
+import xyz.kiradev.vitality.model.profile.staff.command.VanishCommand;
+import xyz.kiradev.vitality.model.profile.staff.command.onjoin.ToggleAutoVanishCommand;
 import xyz.kiradev.vitality.model.rank.commands.RankCommands;
 import xyz.kiradev.vitality.model.rank.menus.edit.main.listener.RankEditMenuListener;
-import xyz.kiradev.vitality.shared.VitalityShared;
-import xyz.kiradev.vitality.shared.model.server.ServerManager;
-import xyz.kiradev.vitality.util.file.LanguageLocale;
 import xyz.kiradev.vitality.model.server.tasks.ServerTask;
+import xyz.kiradev.vitality.punishment.commands.BanCommand;
+import xyz.kiradev.vitality.shared.VitalityShared;
+import xyz.kiradev.vitality.util.file.LanguageLocale;
 
 import java.io.File;
-
 @Getter
 public final class Vitality extends Clash {
 
@@ -35,61 +36,32 @@ public final class Vitality extends Clash {
     public Vitality() {
     }
 
-    @Getter private static Vitality instance;
-
-    private ConfigFile languageFile, config, licenseFile;
+    @Getter
+    private static Vitality instance;
+    private ConfigFile languageFile, configFile;
     private VitalityShared api;
     private Server currentServer;
+    private MessageHandler messageHandler = new MessageHandler();
+
     private StaffHandler staffHandler;
 
     @Override
     public void onEnable() {
         instance = this;
-        setupLicenseFile();
-        if(!authenticate()) {
-            C.logger("&cLicense invalid, Disabling Plugin.");
-            C.logger("&7&oTo get a license join: &bhttps://discord.gg/kiradev&7&o.");
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-        }
         setupFiles();
         loadApi();
         setupServers();
         loadDependencies();
+        C.logger(C.NORMAL_LINE);
+        C.logger("&bPlugin&7: &fVitality");
+        C.logger("&bVersion&7: &f" + getDescription().getVersion());
+        C.logger("&aThank you for purchasing &3Vitality&a...");
+        C.logger(C.NORMAL_LINE);
     }
-
     private void setupFiles() {
-        config = new ConfigFile(this, "settings.yml");
+        configFile = new ConfigFile(this, "settings.yml");
         languageFile = new ConfigFile(this, "language.yml");
         LanguageLocale.init();
-    }
-
-    private boolean authenticate() {
-
-        SentinelClient client = new SentinelClient(
-                "YOUR_URL",
-                "YOUR_API_KEY",
-                "YOUR_ENCRYPTION_SECRET_KEY");
-
-        boolean authenticated = false;
-
-        try {
-            client.getLicenseController().auth(
-                    licenseFile.getString("AUTH.License"), "Vitality", null, null, SentinelClient.getCurrentHwid(), SentinelClient.getCurrentIp());
-            authenticated = true;
-        } catch (ApiException e) {
-            System.out.println("Failed to verify license: " + e.getResponse().getMessage());
-        } catch (Exception e) {
-            System.out.println("An unexpected error occurred: " + e.getMessage());
-        }
-
-        if (authenticated) {
-            System.out.println("Successfully authenticated.");
-        }
-        return authenticated;
-    }
-    private void setupLicenseFile() {
-        licenseFile = new ConfigFile(this, "license.yml");
     }
 
     private void loadApi() {
@@ -113,6 +85,12 @@ public final class Vitality extends Clash {
         setupCommands("Vitality");
         registerListeners(new ProfileListener(this), new RankEditMenuListener(this));
         getCommandAPI().registerCommand(new RankCommands(this));
+        getCommandAPI().registerCommand(new BanCommand(this));
+        // idk if i have to do this??
+        getCommandAPI().registerCommand(new VanishCommand(this));
+        getCommandAPI().registerCommand(new ToggleAutoVanishCommand(this));
+        getCommandAPI().registerCommand(new MessageCommand(this));
+        getCommandAPI().registerCommand(new ReplyCommand(this));
 
         new NameTagAdapter(this);
 
@@ -133,7 +111,7 @@ public final class Vitality extends Clash {
                         getConfig().getBoolean("mongo.auth"),
                         getConfig().getString("mongo.user"),
                         getConfig().getString("mongo.password"));
-    }
+}
 
     @Override
     public void onDisable() {

@@ -13,6 +13,7 @@ import lombok.Getter;
 import xyz.kiradev.vitality.api.VitalityAPI;
 import xyz.kiradev.vitality.api.model.server.IServerManager;
 import xyz.kiradev.vitality.api.model.server.Server;
+import xyz.kiradev.vitality.api.model.server.enums.ServerType;
 import xyz.kiradev.vitality.shared.model.server.packets.ServerKeepAlivePacket;
 import xyz.kiradev.vitality.shared.model.server.packets.ServerUpdatePacket;
 
@@ -51,6 +52,21 @@ public class ServerManager implements IServerManager {
     public Server getByName(String name) {
         for (Server server : servers.values()) {
             if(server.getName().equalsIgnoreCase(name)) return server;
+        }
+        return null;
+    }
+
+    @Override
+    public Server getHubs() {
+        for (Server server : servers.values()) {
+            if(server.getType().equals(ServerType.HUB)) return server;
+        }
+        return null;
+    }
+
+    public Server isHub(Server server) {
+        if(server.getType() == ServerType.HUB) {
+            return server;
         }
         return null;
     }

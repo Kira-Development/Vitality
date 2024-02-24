@@ -8,9 +8,12 @@ import xyz.kiradev.clash.command.annotation.Parameter;
 import xyz.kiradev.vitality.util.file.LanguageLocale;
 
 /*
- * Copyright Spear Development© 2024
- * @project Vitality-Recoding
- * @date 2/3/2024
+ *
+ * Vitality is a property of Kira-Development-Team
+ * 17/11/2023
+ * Coded by the founders of Kira-Development-Team
+ * EmpireMTR & Vifez
+ *
  */
 public class SudoCommands {
 

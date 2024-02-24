@@ -9,13 +9,15 @@ package xyz.kiradev.vitality.api.model.server;
  *
  */
 
+import xyz.kiradev.vitality.api.model.server.enums.ServerType;
+
 import java.util.Map;
 
 public interface IServerManager {
     Server getByID(String id);
     Server getByName(String name);
+    Server getHubs();
     Map<String, Server> getServers();
-
     void start();
     void keepAlive(Server server);
     void sendUpdate(Server server);

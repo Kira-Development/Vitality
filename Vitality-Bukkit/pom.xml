@@ -31,19 +31,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.5.1</version> <!-- Specify the version of the Shade Plugin -->
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>xyz.kiradev.clash</pattern>
+                                    <shadedPattern>xyz.kiradev.shaded.clash</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <finalName>Vitality</finalName>
-                </configuration>
             </plugin>
         </plugins>
         <resources>
@@ -62,6 +66,13 @@
     </repositories>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -72,6 +83,7 @@
             <groupId>xyz.kiradev</groupId>
             <artifactId>Clash</artifactId>
             <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>xyz.kiradev</groupId>

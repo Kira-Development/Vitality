@@ -22,6 +22,11 @@ import xyz.kiradev.vitality.model.rank.procedures.EditProcedure;
 import xyz.kiradev.vitality.util.file.LanguageLocale;
 import xyz.kiradev.vitality.util.text.C;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,7 +38,7 @@ public class RankCommands {
     @Command(label = "rank", permission = "core.command.rank")
     public void help(CommandSender sender) {
         C.sendMessage(sender, LanguageLocale.COMMAND_HELP.getString()
-                .replaceAll("<command name>", "Rank"));
+                .replaceAll("<commandName>", "Rank"));
         C.sendMessage(sender, LanguageLocale.COMMAND_ENTRY.getString()
                 .replaceAll("<command>", "rank").replaceAll("<args>", "create <rank name>"));
         C.sendMessage(sender, LanguageLocale.COMMAND_ENTRY.getString()
@@ -68,7 +73,7 @@ public class RankCommands {
             return;
         }
         if(rank.isDefault()) {
-            C.sendMessage(sender, "&cYou cannot delete a default rank!");
+            C.sendMessage(sender, "&cYou cannot delete a default rank.");
             return;
         }
 

@@ -9,6 +9,9 @@ package xyz.kiradev.vitality.listeners;
  *
  */
 
+import net.md_5.bungee.api.AbstractReconnectHandler;
+import net.md_5.bungee.api.ServerConnectRequest;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -17,6 +20,8 @@ import xyz.kiradev.vitality.Proxy;
 import xyz.kiradev.vitality.api.VitalityAPI;
 import xyz.kiradev.vitality.api.model.profile.Profile;
 import xyz.kiradev.vitality.api.model.rank.Rank;
+import xyz.kiradev.vitality.api.model.server.Server;
+import xyz.kiradev.vitality.api.model.server.enums.ServerType;
 import xyz.kiradev.vitality.util.C;
 
 public class NetworkListener implements Listener {
@@ -52,6 +57,7 @@ public class NetworkListener implements Listener {
         Rank whitelistRank = api.getRankManager().getRankByName(
                 plugin.getConfig().getString("maintenance.rank")
         );
+
         if (whitelistRank == null) return;
         if (profile == null) {
             event.getPlayer().disconnect(C.color(C.convertListToString(plugin.getLanguageFile().getConfig().getStringList("maintenance.kick-message"))));
@@ -60,5 +66,7 @@ public class NetworkListener implements Listener {
         if (!profile.hasHigherRank(whitelistRank)) {
             event.getPlayer().disconnect(C.color(C.convertListToString(plugin.getLanguageFile().getConfig().getStringList("maintenance.kick-message"))));
         }
+
+
     }
 }

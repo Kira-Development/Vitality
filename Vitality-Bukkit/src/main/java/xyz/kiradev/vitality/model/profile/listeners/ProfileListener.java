@@ -124,6 +124,11 @@ public class ProfileListener implements Listener {
                             .replaceAll("<alts>", builder.toString())
                     , true);
         }
+        if(profile.isVanishOnJoin()) {
+            profile.setVanished(true);
+            LanguageLocale.STAFF_AUTO_VANISH_JOIN_MESSAGE.sendMessage(event.getPlayer());
+        }
+
     }
 
     @EventHandler(priority = EventPriority.LOWEST)

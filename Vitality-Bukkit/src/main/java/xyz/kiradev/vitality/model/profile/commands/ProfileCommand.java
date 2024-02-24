@@ -48,11 +48,11 @@ public class ProfileCommand {
         ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
         ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
         ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
-        if(profile == null) return;
+        if (profile == null) return;
         profile.addPermission(permission);
         Vitality.getInstance().getApi().getApi().getProfileManager().save(profile);
         Player player = Bukkit.getPlayer(profile.getUuid());
-        if(player != null && player.isOnline()) PermissionManager.refreshAll(player);
+        if (player != null && player.isOnline()) PermissionManager.refreshAll(player);
         C.sendMessage(sender, LanguageLocale.PROFILE_ADDED_PERMISSION.getString().replaceAll("<player>", profile.getName()).replace("<mc>", "" + mainColor)
                 .replace("<sc>", "" + secondColor)
                 .replace("<ec>", "" + errorColor));
@@ -63,11 +63,11 @@ public class ProfileCommand {
         ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
         ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
         ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
-        if(profile == null) return;
+        if (profile == null) return;
         profile.removePermission(permission);
         Vitality.getInstance().getApi().getApi().getProfileManager().save(profile);
         Player player = Bukkit.getPlayer(profile.getUuid());
-        if(player != null && player.isOnline()) PermissionManager.refreshAll(player);
+        if (player != null && player.isOnline()) PermissionManager.refreshAll(player);
         C.sendMessage(sender, LanguageLocale.PROFILE_REMOVED_PERMISSION.getString().replaceAll("<player>", profile.getName()).replace("<mc>", "" + mainColor)
                 .replace("<sc>", "" + secondColor)
                 .replace("<ec>", "" + errorColor));
@@ -78,15 +78,15 @@ public class ProfileCommand {
         ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
         ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
         ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
-        if(profile == null) return;
+        if (profile == null) return;
         C.sendMessage(sender, LanguageLocale.PROFILE_LIST_PERMISSION.getString().replaceAll("<V>", "" + profile.getPermissions()).replace("<mc>", "" + mainColor)
                 .replace("<sc>", "" + secondColor)
                 .replace("<ec>", "" + errorColor));
     }
-
+}/*
     @SubCommand(label = "wipe", parent = "user", permission = "core.admin")
     public void wipe(CommandSender sender, @Parameter(name = "player") Profile profile) {
         if(profile == null) return;
-        C.sendMessage(sender, "<ec>This feature is currently under maintenance!");
+
     }
-}
+}*/

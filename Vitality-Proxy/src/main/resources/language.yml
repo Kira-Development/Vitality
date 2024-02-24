@@ -4,6 +4,11 @@ staff:
   disconnect: "&b[S] <player> &3disconnected from &b<server>&3."
   switch: "&b[S] <player> &3joined &b<new> &3from &b<old>&3."
 
+hub-balancer:
+  connecting: "&aConnecting you to a &flobby&a..."
+  connected: "&aConnected you to &f<hubName>&a..."
+  already-connected: "&cYou are already connected to a hub!"
+
 maintenance:
   toggle-on: "&7You have successfully toggled the maintenance mode &aON&7."
   toggle-off: "&7You have successfully toggled the maintenance mode &cOFF&7."
