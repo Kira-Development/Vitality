@@ -1,0 +1,4 @@
+name: Vitality
+version: '1.0'
+main: xyz.kiradev.vitality.Proxy
+author: Kira Development Team

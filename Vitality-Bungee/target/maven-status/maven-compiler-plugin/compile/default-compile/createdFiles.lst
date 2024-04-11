@@ -1,0 +1,8 @@
+xyz\kiradev\vitality\listeners\NetworkListener.class
+xyz\kiradev\vitality\listeners\PermissionsListener.class
+xyz\kiradev\vitality\commands\HubCommand.class
+xyz\kiradev\vitality\commands\MaintenanceCommand.class
+xyz\kiradev\vitality\util\ConfigUtil.class
+xyz\kiradev\vitality\listeners\StaffListener.class
+xyz\kiradev\vitality\Proxy.class
+xyz\kiradev\vitality\util\C.class

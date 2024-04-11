@@ -1,0 +1,44 @@
+# NOTE: Main & secondary colors aren't supported in the bungee addon!
+staff:
+  connect: "&b[S] <player> &3connected to &b<server>&3."
+  disconnect: "&b[S] <player> &3disconnected from &b<server>&3."
+  switch: "&b[S] <player> &3joined &b<new> &3from &b<old>&3."
+
+hub-balancer:
+  connecting: "&aConnecting you to a &flobby&a..."
+  connected: "&aConnected you to &f<hubName>&a..."
+  already-connected: "&cYou are already connected to a hub!"
+
+maintenance:
+  toggle-on: "&7You have successfully toggled the maintenance mode &aON&7."
+  toggle-off: "&7You have successfully toggled the maintenance mode &cOFF&7."
+  toggle-on-broadcast: "&aNetwork maintenance mode has been toggled ON."
+  toggle-off-broadcast: "&cNetwork maintenance mode has been toggled OFF."
+  set-whitelisted-rank: "&7You have successfully set the whitelisted rank to <rank>&7." # The rank name is colored!
+  add-player: "&7You have successfully added <player> &7to the maintenance." # The player name is not colored!
+  remove-player: "&7You have successfully removed <player> &7from the maintenance."
+  status-message:
+    - "&r"
+    - "&b&lMaintenance Status"
+    - " &7* &fStatus: <on/off>" # On is green and off is red
+    - " &7* &fWhitelisted Rank: <rank>" # Colored rank name
+    - " &7* &fWhitelisted Players: <players>" # The player names aren't colored.
+    - "&r"
+  kick-message:
+    - "&cThe network is currently under maintenance!"
+    - "&cPlease check our discord: discord.gg/kiradev"
+    - "&cFor more information about this lockdown."
+  command-help-usage:
+    - "&b&lMaintenance Commands"
+    - " &7* &f/maintenance toggle &7(Toggle on / off the maintenance mode)"
+    - " &7* &f/maintenance setrank &b<rank> &7(Set the whitelisted rank to the specified rank)"
+    - " &7* &f/maintenance addplayer &b<player name> &7(Adds the player to the whitelisted players list)"
+    - " &7* &f/maintenance removeplayer &b<player name> &7(Removes the player from the whitelisted players list)"
+    - " &7* &f/maintenance status &7(Shows the status of the maintenance)"
+    - " &7* &f/maintenance help &7(Shows the help message)"
+
+MOTD:
+  line-1: "&b&lVitality &7| A feature-rich core for a fair price!"
+  line-2: "&7To purchase join our discord! discord.gg/kiradev"
+  maintenance-line-1: "&b&lVitality &7| A feature-rich core for a fair price!"
+  maintenance-line-2: "&cCurrently under maintenance!"
