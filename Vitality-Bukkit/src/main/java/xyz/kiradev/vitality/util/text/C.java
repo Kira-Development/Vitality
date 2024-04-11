@@ -100,10 +100,16 @@ public class C {
 
 
     public static void broadcastRedisMessage(String message) {
-        Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(message));
+        ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
+        ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
+        ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
+        Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(C.color(message.replace("<mc>", "" + mainColor).replace("<sc>", "" + secondColor).replace("<ec>", "" + errorColor))));
     }
 
     public static void broadcastRedisMessage(String message, boolean staff) {
-        Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(message, staff));
+        ChatColor mainColor = ChatColor.valueOf(LanguageLocale.MAIN_COLOR.getString());
+        ChatColor secondColor = ChatColor.valueOf(LanguageLocale.SECONDARY_COLOR.getString());
+        ChatColor errorColor = ChatColor.valueOf(LanguageLocale.ERROR_COLOR.getString());
+        Vitality.getInstance().getApi().getApi().getRedisAPI().send(new BroadcastPacket(C.color(message.replace("<mc>", "" + mainColor).replace("<sc>", "" + secondColor).replace("<ec>", "" + errorColor)), staff));
     }
 }

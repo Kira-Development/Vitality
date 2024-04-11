@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xyz.kiradev</groupId>
-    <artifactId>Vitality</artifactId>
+    <artifactId>Vitality-Parent</artifactId>
     <version>1.0</version>
 
     <packaging>pom</packaging>
@@ -13,7 +13,7 @@
     <modules>
         <module>Vitality-API</module>
         <module>Vitality-Shared</module>
-        <module>Vitality-Proxy</module>
+        <module>Vitality-Bungee</module>
         <module>Vitality-Bukkit</module>
     </modules>
 

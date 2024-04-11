@@ -9,6 +9,12 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <parent>
+        <groupId>xyz.kiradev</groupId>
+        <artifactId>Vitality-Parent</artifactId>
+        <version>1.0</version>
+    </parent>
+
     <name>Vitality</name>
 
     <properties>
@@ -76,7 +82,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.20.2-R0.1-SNAPSHOT</version>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -89,12 +95,6 @@
             <groupId>xyz.kiradev</groupId>
             <artifactId>Vitality-Shared</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.20.4-R0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

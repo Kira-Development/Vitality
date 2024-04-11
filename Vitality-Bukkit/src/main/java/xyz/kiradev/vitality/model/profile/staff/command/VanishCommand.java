@@ -9,8 +9,10 @@ package xyz.kiradev.vitality.model.profile.staff.command;
  *
  */
 
+import netscape.security.UserTarget;
 import org.bukkit.entity.Player;
 import xyz.kiradev.clash.command.annotation.Command;
+import xyz.kiradev.clash.command.annotation.Optional;
 import xyz.kiradev.clash.command.annotation.Parameter;
 import xyz.kiradev.vitality.Vitality;
 import xyz.kiradev.vitality.api.model.profile.Profile;
@@ -26,26 +28,12 @@ public class VanishCommand {
     }
 
     @Command(label = "vanish", permission = "core.command.vanish", aliases = {"v", "invis", "vis"})
-    public void vanish(Player player, @Parameter(name = "player") Player target) {
-        if (target == null) {
-            Profile profile = instance.getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
-            profile.setVanished(!profile.isVanished());
-            instance.getApi().getApi().getProfileManager().save(profile);
-            if (profile.isVanished()) {
-                LanguageLocale.STAFF_VANISH_ON.sendMessage(player);
-                return;
-            }
-            LanguageLocale.STAFF_VANISH_OFF.sendMessage(player);
-        } else {
-            Profile profile = instance.getApi().getApi().getProfileManager().getProfileByID(target.getUniqueId());
-            profile.setVanished(!profile.isVanished());
-            if(profile.isVanished()) {
-                C.sendMessage(player, LanguageLocale.STAFF_VANISH_OTHER_OFF.getString()
-                        .replaceAll("<target>", profile.getDisplayName()));
-                return;
-            }
-            C.sendMessage(player, LanguageLocale.STAFF_VANISH_OTHER_ON.getString()
-                    .replaceAll("<target>", profile.getDisplayName()));
+    public void vanishCommand(Player player, @Optional(value = "player") Player target) {
+        Profile senderProfile = instance.getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
+        if (senderProfile.isVanished()) {
+            senderProfile.setVanished(false);
+        } else if (!senderProfile.isVanished()) {
+            senderProfile.setVanished(true);
         }
     }
 }

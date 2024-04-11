@@ -9,8 +9,11 @@
         <module name="Vitality-API" />
         <module name="Vitality-Shared" />
         <module name="Vitality-Bukkit" />
-        <module name="Vitality-Proxy" />
+        <module name="Vitality-Bungee" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Vitality-Velocity" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

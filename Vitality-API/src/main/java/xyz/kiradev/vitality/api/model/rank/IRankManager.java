@@ -16,7 +16,6 @@ public interface IRankManager {
     Rank getRankByUUID(UUID uuid);
     Rank getRankByName(String name);
     Rank getDefaultRank();
-
     void update(Rank rank);
     void delete(Rank rank);
     List<Rank> getRanks();

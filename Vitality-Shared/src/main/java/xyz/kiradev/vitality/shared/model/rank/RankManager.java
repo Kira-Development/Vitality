@@ -42,7 +42,6 @@ public class RankManager implements IRankManager {
     public Rank getDefaultRank() {
         return getRanks().stream().filter(Rank::isDefault).findFirst().orElse(null);
     }
-
     @Override
     public void update(Rank rank) {
         api.getMongoAPI().getMongoDatabase().getCollection("ranks")

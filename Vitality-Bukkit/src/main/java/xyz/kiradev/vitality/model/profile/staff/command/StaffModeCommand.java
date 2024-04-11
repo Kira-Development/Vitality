@@ -31,13 +31,14 @@ public class StaffModeCommand {
     public void vanish(Player player, @Parameter(name = "player") Player target) {
         if(instance.getCurrentServer().getType() == ServerType.HUB) {
             LanguageLocale.STAFF_NO_STAFFMODE_ON_HUB.sendMessage(player);
+            return;
         }
-        if (instance.getStaffHandler().isVanished(player)) {
+        if (instance.getStaffHandler().isModModed(player)) {
             Profile profile = instance.getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
-            profile.setVanished(true);
+            profile.setStaffMode(true);
         } else {
             Profile profile = instance.getApi().getApi().getProfileManager().getProfileByID(player.getUniqueId());
-            profile.setVanished(false);
+            profile.setStaffMode(false);
         }
     }
 }

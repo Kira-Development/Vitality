@@ -1,0 +1,15 @@
+modmode-items:
+  RANDOM_TELEPORT:
+    item: DIAMOND
+    name: "&aRandom Teleport"
+    slot: 0
+    command: ""
+    action: RANDOM_TELEPORT # Put COMMAND to run a command, put CONSOLE to run a command as console.
+  ONLINE_STAFF_GUI:
+    item: PLAYER_HEAD
+    name: "&aRandom Teleport"
+    slot: 1
+    command: ""
+    action: ONLINE_STAFF # Put COMMAND to run a command, put CONSOLE to run a command as console.
+
+

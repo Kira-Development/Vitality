@@ -48,7 +48,6 @@ public class VitalityShared {
 
     public VitalityShared(JavaPlugin plugin, MongoCredentials credentials, RedisCredentials redisCredentials) {
         instance = this;
-
         this.plugin = plugin;
         this.api = new VitalityAPI(credentials, redisCredentials);
         this.api.setServerManager(new ServerManager(api));
@@ -67,6 +66,7 @@ public class VitalityShared {
             rank.setDefault(true);
             api.getRankManager().update(rank);
             System.out.println("Successfully created Default rank.");
+            return;
         }
         System.out.println("Successfully loaded ranks system!");
     }

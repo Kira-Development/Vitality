@@ -30,8 +30,8 @@ public class Punishment {
     private long unbannedAt;
     private boolean active;
 
-    public Punishment(UUID uuid, UUID issuer, UUID player, String reason, PunishmentType type, long duration, String addedOn) {
-        this.uuid = uuid;
+    public Punishment(UUID issuer, UUID player, String reason, PunishmentType type, long duration, String addedOn) {
+        this.uuid = UUID.randomUUID();
         this.issuer = issuer;
         this.player = player;
         this.reason = reason;

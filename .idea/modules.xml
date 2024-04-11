@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Vitality-API.iml" filepath="$PROJECT_DIR$/Vitality-API.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vitality-Bukkit/Vitality-Bukkit.iml" filepath="$PROJECT_DIR$/Vitality-Bukkit/Vitality-Bukkit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Vitality-Proxy/Vitality-Proxy.iml" filepath="$PROJECT_DIR$/Vitality-Proxy/Vitality-Proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vitality-Proxy/Vitality-Bungee.iml" filepath="$PROJECT_DIR$/Vitality-Proxy/Vitality-Bungee.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vitality-Shared.iml" filepath="$PROJECT_DIR$/Vitality-Shared.iml" />
     </modules>
   </component>

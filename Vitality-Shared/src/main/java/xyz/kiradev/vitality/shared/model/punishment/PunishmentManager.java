@@ -24,7 +24,6 @@ import java.util.UUID;
 public class PunishmentManager implements IPunishmentManager {
 
     private final VitalityAPI api;
-
     @Override
     public Punishment getPunishmentByUUID(UUID uuid) {
         Document document = api.getMongoAPI().getMongoDatabase().getCollection("punishments").find(Filters.eq("_id", uuid.toString())).first();

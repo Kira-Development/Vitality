@@ -32,8 +32,11 @@ server:
 global:
   console-format: "&4&lConsole"
   allow-nametags: true # Do you want to allow nametags on your server?
-  default-tag: "<rank_color><player>" # Available placeholders: <rank_color>, <rank_prefix>
+  default-tag: "<rank_color>" # Available placeholders: <rank_color>, <rank_prefix>
   vanish-tag: true # Do you want to make a special prefix for players display name in vanish?
-  vanish-tag-value: "&7[V] <player>"
+  vanish-tag-value: "&7[V] "
   staff-mode-tag: true # Do you want to make a special prefix for the players display name in staff mode?
-  staff-mode-tag-value: "&7[&eS&7] <player> "
+  staff-mode-tag-value: "&7[&eS&7] "
+  punishments:
+    command-at-3-warnings: true
+    command: "tempban <player> 3d Max Warnings Reached -s" # Without /

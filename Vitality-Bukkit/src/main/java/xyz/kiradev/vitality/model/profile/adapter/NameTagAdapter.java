@@ -23,7 +23,7 @@ public class NameTagAdapter implements xyz.kiradev.clash.nametag.adapter.NameTag
     public NameTagAdapter(Vitality instance) {
         this.instance = instance;
 
-        if(instance.getConfig().getBoolean("global.allow-nametags")) {
+        if(instance.getConfigFile().getBoolean("global.allow-nametags")) {
             new NameTagAPI(instance, this, Bukkit.getScoreboardManager().getNewScoreboard());
         }
     }
@@ -34,11 +34,11 @@ public class NameTagAdapter implements xyz.kiradev.clash.nametag.adapter.NameTag
         String finalPrefix;
 
         if(profile.isVanished()) {
-            finalPrefix = instance.getConfig().getString("global.vanish-tag-value");
+            finalPrefix = instance.getConfigFile().getString("global.vanish-tag-value").replace("<player>", player.getDisplayName());
         } else if(profile.isStaffMode()) {
-            finalPrefix = instance.getConfig().getString("global.staff-mode-tag-value");
+            finalPrefix = instance.getConfigFile().getString("global.staff-mode-tag-value").replace("<player>", player.getDisplayName());
         } else {
-            finalPrefix = instance.getConfig().getString("global.default-tag").replace("<rank_color>", profile.getCurrentRank().getDisplayColor())
+            finalPrefix = instance.getConfigFile().getString("global.default-tag").replace("<rank_color>", profile.getCurrentRank().getDisplayColor())
                     .replace("<rank_prefix>", profile.getCurrentRank().getPrefix());
         }
         return C.color(finalPrefix);
